@@ -1,33 +1,34 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 
 
-function BtnGroup(){
+const [activeClass, setActiveClass] = useState("");
 
-    const [activeClass, setActiveClass] = useState('');
+class BtnGroup extends React.Component{
 
-    const btnLeftClass = classNames([
-        'btn cast-btn',
-        'left' === activeClass ? 'active' : ''
+    classLeftBtn = classNames([
+        "btn btn-danger",
+        "left" === activeClass ? 'active' : ''
     ])
 
-    const btnRightClass = classNames([
-        'btn cast-btn',
-        'right' === activeClass ? 'active' : ''
+    classRightBtn = classNames([
+        "btn btn-danger",
+        "right" === activeClass ? 'active' : ''
     ])
 
-    const toggleClass = (event) =>{
-        if(event.target.value === 'leftBtn') return setActiveClass('left');
-
-        return setActiveClass('right')
+    addClass = (event) => {
+        if(event.target.value === "leftBtn") return setActiveClass('left');
+        return setActiveClass("right");
     }
 
-    return(
-        <div className="d-flex justify-content-center mt-5"  role="group">
-            <button  type="button" onClick={toggleClass} value="leftBtn" className={btnLeftClass}>1</button>
-            <button  type="button" onClick={toggleClass} value="rightBtn" className={btnRightClass}>2</button>
-        </div>
-    );
+    render() {
+        return (
+            <div className="d-flex justify-content-center mt-5" role="group">
+                <button type="button" onClick={this.addClass} value="leftBtn" className={this.classLeftBtn}>1</button>
+                <button type="button" onClick={this.addClass} value="rightBtn" className={this.classRightBtn}>2</button>
+            </div>
+        )
+    }
 
 
 }
